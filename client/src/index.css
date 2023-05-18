@@ -88,6 +88,26 @@ button {
   border-color: var(--bg-color);
 }
 
+#login-btn {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  border-color: var(--font-color);
+  width: 150px;
+  margin: 0 auto;
+}
+
+#login-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border-color: var(--bg-color);
+}
+
+#login-btn-selected {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border-color: var(--bg-color);
+}
+
 .selected {
   background-color: var(--primary-color);
   color: var(--bg-color);
