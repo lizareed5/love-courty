@@ -458,7 +458,7 @@ puts 'seeding lizas reservations 📆'
     user_id: liza.id,
     park_id: Park.all.sample.id,
     # court_id: Court.all.sample.id,
-    date: Faker::Date.between(from: '2023-05-16', to: '2023-05-20'),
+    date: Faker::Date.between(from: '2023-06-26', to: '2023-06-28'),
     time: Faker::Number.within(range: 10..19),
     duration: Faker::Number.within(range: 1..3),
 )

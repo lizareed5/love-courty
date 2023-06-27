@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
 import Menu from './Menu';
 import { Container } from 'semantic-ui-react'
-import { Button, Form, Image } from 'react-bootstrap'
+import { Button, Form, Image, Alert } from 'react-bootstrap'
 import ReactStars from "react-rating-stars-component";
 
 export default function ParkPage({parkId, updateUser, user}) {
@@ -89,6 +89,7 @@ export default function ParkPage({parkId, updateUser, user}) {
         console.log(ratingData)
         // setSelectedRating(rating)
     }
+    const [showRatingAlert, setShowRatingAlert] = useState(false);
 
     const handleNewRating= (e) => {
         e.preventDefault()
@@ -102,7 +103,9 @@ export default function ParkPage({parkId, updateUser, user}) {
         .then(res => {
             if(res.ok) {
                 res.json().then(setRatingData(ratingData))
-                .then(alert(`You've rated ${park.name} a ${ratingData.rating}.`))
+                (setShowRatingAlert(true))
+                // .then(alert(`You've rated ${park.name} a ${ratingData.rating}.`))
+                
                 // .then(setRated(true))
             } else {
                 res.json().then(json => alert(json.errors))
@@ -136,6 +139,11 @@ export default function ParkPage({parkId, updateUser, user}) {
                 <input type="radio" name="rating" value="5" checked={ratingData.rating === 5} onChange={handleRating}/>5
                 </Form.Label>
                 <Button id='sign-save-btn' type="submit" size='sm'>Rate</Button>
+                {showRatingAlert && (
+                    <Alert variant="warning" onClose={() => setShowRatingAlert(false)} dismissible>
+                        <Alert.Heading>You've rated {park.name} a {ratingData.rating}.</Alert.Heading>
+                    </Alert>
+                )}
             </Form>
             }
             <br />
